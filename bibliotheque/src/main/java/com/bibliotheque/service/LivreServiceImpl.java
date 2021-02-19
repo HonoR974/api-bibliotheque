@@ -32,7 +32,6 @@ public class LivreServiceImpl implements LivreService{
     public Livre getLivreById(long id) {
         Livre livre=  livreRepository.findById(id);
 
-
         return livre;
     }
 
