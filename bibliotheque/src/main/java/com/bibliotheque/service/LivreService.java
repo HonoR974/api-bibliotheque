@@ -1,5 +1,6 @@
 package com.bibliotheque.service;
 
+import com.bibliotheque.model.Examplaire;
 import com.bibliotheque.model.Livre;
 
 import java.util.List;
@@ -15,5 +16,7 @@ public interface LivreService {
     void deleteLivre(long id);
 
     Livre getLivreById(long id);
+
+    List<Examplaire> getAllExamplaireByIdLivre(long id);
 
 }

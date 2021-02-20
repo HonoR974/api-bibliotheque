@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,4 +22,10 @@ public class Livre {
 
     @Column(name = "titre")
     private String titre;
+
+    @ManyToOne
+    private Bibliotheque bibliotheque;
+
+    @OneToMany(mappedBy = "livre")
+    private List<Examplaire> examplaires;
 }

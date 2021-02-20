@@ -1,6 +1,8 @@
 package com.bibliotheque.web.controller;
 
+import com.bibliotheque.dto.ExamplaireDTO;
 import com.bibliotheque.dto.LivreDTO;
+import com.bibliotheque.model.Examplaire;
 import com.bibliotheque.model.Livre;
 import com.bibliotheque.service.LivreService;
 import com.bibliotheque.web.exception.LivreIntrouvableException;
@@ -82,6 +84,16 @@ public class LivreController {
     {
         livreService.deleteLivre(id);
         return HttpStatus.ACCEPTED;
+    }
+
+    @GetMapping("/{id}/examplaires")
+    public List<ExamplaireDTO>  getAllExamplaireByIdLivre(@PathVariable(name = "id")long id)
+    {
+        List<Examplaire> examplaires = livreService.getAllExamplaireByIdLivre(id);
+
+        List<ExamplaireDTO> examplaireDTOS = examplaires.stream().map(examplaire -> modelMapper.map(examplaire, ExamplaireDTO.class))
+                                            .collect(Collectors.toList());
+        return examplaireDTOS;
     }
 
 

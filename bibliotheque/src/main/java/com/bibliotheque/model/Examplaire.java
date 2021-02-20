@@ -5,21 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Bibliotheque {
+public class Examplaire {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private  String  nom;
-    private  String adresse;
+    private String edition;
 
-    @OneToMany(mappedBy = "bibliotheque")
-    private List<Livre> livres;
+    @ManyToOne
+    private Livre livre;
+
 }

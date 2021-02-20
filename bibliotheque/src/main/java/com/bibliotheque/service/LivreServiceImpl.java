@@ -1,5 +1,6 @@
 package com.bibliotheque.service;
 
+import com.bibliotheque.model.Examplaire;
 import com.bibliotheque.model.Livre;
 import com.bibliotheque.repository.LivreRepository;
 import com.bibliotheque.web.exception.LivreIntrouvableException;
@@ -50,5 +51,9 @@ public class LivreServiceImpl implements LivreService{
         livreRepository.deleteById(id);
     }
 
-
+    @Override
+    public List<Examplaire> getAllExamplaireByIdLivre(long id) {
+        Livre livre = livreRepository.findById(id);
+        return livre.getExamplaires();
+    }
 }

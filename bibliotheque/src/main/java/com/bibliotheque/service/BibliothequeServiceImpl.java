@@ -1,6 +1,7 @@
 package com.bibliotheque.service;
 
 import com.bibliotheque.model.Bibliotheque;
+import com.bibliotheque.model.Livre;
 import com.bibliotheque.repository.BibliothequeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,11 @@ public class BibliothequeServiceImpl implements BibliothequeService {
     public Bibliotheque getBibliothequeById(long id) {
         Bibliotheque bibliotheque =  bibliothequeRepository.findById(id);
         return bibliotheque;
+    }
+
+    @Override
+    public List<Livre> getAllLibreByIdBiblio(long id) {
+        Bibliotheque bibliotheque = bibliothequeRepository.findById(id);
+        return bibliotheque.getLivres();
     }
 }

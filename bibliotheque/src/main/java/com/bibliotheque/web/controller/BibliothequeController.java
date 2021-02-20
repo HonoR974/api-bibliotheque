@@ -1,7 +1,9 @@
 package com.bibliotheque.web.controller;
 
 import com.bibliotheque.dto.BibliothequeDTO;
+import com.bibliotheque.dto.LivreDTO;
 import com.bibliotheque.model.Bibliotheque;
+import com.bibliotheque.model.Livre;
 import com.bibliotheque.service.BibliothequeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +72,16 @@ public class BibliothequeController {
     {
         bibliothequeService.deleteBibliotheque(id);
         return HttpStatus.ACCEPTED;
+    }
+
+    @GetMapping("/{id}/livres")
+    public List<LivreDTO> getAllLivresByIdBiblio(@PathVariable(name = "id")Long id)
+    {
+        List<Livre> livreList= bibliothequeService.getAllLibreByIdBiblio(id);
+
+        List<LivreDTO> livreDTOList = livreList.stream().map(livre -> modelMapper.map(livre, LivreDTO.class))
+                                        .collect(Collectors.toList());
+
+        return livreDTOList;
     }
 }
